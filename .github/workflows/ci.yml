@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches-ignore:
+      - main
+      - beta
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npx tsc --noEmit -p .
+
+      - run: npx vsce package --no-git-tag-version --out cerulean-ci.vsix
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vsix-ci-${{ github.run_id }}
+          path: cerulean-ci.vsix
