@@ -1,0 +1,35 @@
+name: release
+
+on:
+  push:
+    branches:
+      - main
+      - beta
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment:
+      name: marketplace
+      url: https://marketplace.visualstudio.com/items?itemName=efredriksson.cerulean
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VSCE_PAT: ${{ github.ref == 'refs/heads/main' && secrets.VSCE_PAT || '' }}

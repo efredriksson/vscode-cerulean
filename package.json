@@ -1,0 +1,47 @@
+{
+  "name": "cerulean",
+  "displayName": "Cerulean (Teal formatter)",
+  "description": "Format-on-save for the Cerulean Teal formatter.",
+  "version": "0.1.0",
+  "publisher": "efredriksson",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/efredriksson/vscode-cerulean"
+  },
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:teal"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Cerulean",
+      "properties": {
+        "cerulean.cliPath": {
+          "type": "string",
+          "default": "ceru",
+          "description": "Path to the `ceru` binary. The extension spawns `ceru daemon` and talks to it over stdio. Must be on PATH or set to an absolute path."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package --out cerulean.vsix"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.96.0",
+    "@vscode/vsce": "^3.2.0",
+    "semantic-release": "^24.2.9",
+    "semantic-release-vsce": "^6.1.5",
+    "typescript": "^5.4.0"
+  }
+}
