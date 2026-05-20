@@ -4,9 +4,15 @@
   "description": "Format-on-save for the Cerulean Teal formatter.",
   "version": "0.1.0",
   "publisher": "efredriksson",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "homepage": "https://github.com/efredriksson/vscode-cerulean#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/efredriksson/vscode-cerulean"
+  },
+  "bugs": {
+    "url": "https://github.com/efredriksson/vscode-cerulean/issues"
   },
   "engines": {
     "vscode": "^1.96.0"
@@ -14,6 +20,19 @@
   "categories": [
     "Formatters"
   ],
+  "keywords": [
+    "teal",
+    "tl",
+    "formatter",
+    "format-on-save",
+    "cerulean",
+    "lua"
+  ],
+  "galleryBanner": {
+    "color": "#0a1929",
+    "theme": "dark"
+  },
+  "qna": "marketplace",
   "main": "./out/extension.js",
   "activationEvents": [
     "onLanguage:teal"
