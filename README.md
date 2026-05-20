@@ -5,7 +5,7 @@
 Fast formatter for [Teal](https://github.com/teal-language/tl). Save your `.tl` files and directly have them formatted.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-0d7eaa)](https://opensource.org/licenses/MIT)
-[![Marketplace](https://img.shields.io/badge/VS%20Code-Marketplace-0d7eaa)](https://marketplace.visualstudio.com/items?itemName=efredriksson.cerulean)
+[![Marketplace](https://img.shields.io/badge/VS%20Code-Marketplace-0d7eaa)](https://marketplace.visualstudio.com/items?itemName=efredriksson.cerulean-teal)
 
 </div>
 
@@ -35,7 +35,7 @@ ceru --version
    enable format-on-save:
 
    ```jsonc
-   "[teal]": { "editor.defaultFormatter": "efredriksson.cerulean" },
+   "[teal]": { "editor.defaultFormatter": "efredriksson.cerulean-teal" },
    "editor.formatOnSave": true
    ```
 

@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: marketplace
-      url: https://marketplace.visualstudio.com/items?itemName=efredriksson.cerulean
+      url: https://marketplace.visualstudio.com/items?itemName=efredriksson.cerulean-teal
     steps:
       - uses: actions/checkout@v4
         with:
