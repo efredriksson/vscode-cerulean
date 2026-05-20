@@ -2,8 +2,12 @@
 .github/**
 node_modules/**
 src/**
+scripts/**
 tsconfig.json
 **/*.map
 *.vsix
 .releaserc.json
 scratchpad.tl
+DEVELOPMENT.md
+media/icon.svg
+media/demo.gif
