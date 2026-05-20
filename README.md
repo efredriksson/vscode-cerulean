@@ -1,69 +1,55 @@
-# Cerulean VSCode extension
+<div align="center">
 
-Format-on-save for Teal source files. Spawns `ceru daemon` once per editor
-session and talks to it over stdio. No LSP, no range formatting, no
-marketplace publication yet.
+# Cerulean: a formatter for Teal
 
-## Prerequisite
+Fast formatter for [Teal](https://github.com/teal-language/tl). Save your `.tl` files and directly have them formatted.
 
-`ceru` must be on `PATH`. Install one of:
+[![License: MIT](https://img.shields.io/badge/License-MIT-0d7eaa)](https://opensource.org/licenses/MIT)
+[![Marketplace](https://img.shields.io/badge/VS%20Code-Marketplace-0d7eaa)](https://marketplace.visualstudio.com/items?itemName=efredriksson.cerulean)
 
-- `luarocks install cerulean` (recommended).
-- `make install` from the Cerulean repo root.
+</div>
 
-Verify: `which ceru` resolves, and `printf 'PING\n' | ceru daemon` prints
-`PONG\n0\n` after the `cerulean-daemon: ready` line.
+![demo](https://raw.githubusercontent.com/efredriksson/vscode-cerulean/main/media/demo.gif)
 
-The official Teal extension `pdesaulniers.vscode-teal` provides syntax,
-diagnostics, and completion. Install both; they coexist.
+## Features
 
-## Install (end user)
+- **Format-on-save** for Teal (`.tl`) files.
+- **Fast** session daemon with no startup cost on save.
+- **Zero config** when `ceru` is on your `PATH`. One setting (`cerulean.cliPath`)
+  if it isn't.
+- **Coexists** with [`pdesaulniers.vscode-teal`](https://marketplace.visualstudio.com/items?itemName=pdesaulniers.vscode-teal), install both.
 
-From this repo:
+## Requirements
+
+The `ceru` binary must be on `PATH`, or `cerulean.cliPath` must point at it. Run `luarocks install cerulean` to install it. See [Cerulean repo](https://github.com/efredriksson/cerulean) for documentation.
+
+Verify the install:
 
 ```sh
-npm install
-npm run package        # produces cerulean.vsix
-code --install-extension cerulean.vsix
+ceru --version
 ```
 
-Or `Cmd/Ctrl+Shift+P` → `Extensions: Install from VSIX...` and pick the
-file.
+## Quick start
 
-Then in user or workspace settings:
+1. In user or workspace settings, set Cerulean as the Teal formatter and
+   enable format-on-save:
 
-```jsonc
-"[teal]": { "editor.defaultFormatter": "efredriksson.cerulean" },
-"editor.formatOnSave": true
-```
+   ```jsonc
+   "[teal]": { "editor.defaultFormatter": "efredriksson.cerulean" },
+   "editor.formatOnSave": true
+   ```
 
-Open a `.tl` file, save, buffer reformats.
+1. Open a `.tl` file, make changes, and save.
 
-## Develop (Extension Development Host)
+## Configuration
 
-1. `npm install && npm run compile`.
-2. Open this repository as the workspace root in VSCode (`File → Open
-   Folder…`). F5 needs to resolve `.vscode/launch.json` from the root.
-3. Press `F5`. VSCode runs `npm: compile` (preLaunchTask), then opens a
-   second window titled `[Extension Development Host]`.
-4. In that host, open any `.tl` file, set the `[teal]` formatter / save
-   settings, edit, save.
+| Setting             | Default  | Purpose                                                                     |
+| ------------------- | -------- | --------------------------------------------------------------------------- |
+| `cerulean.cliPath`  | `"ceru"` | Path to the `ceru` binary. Override when not on `PATH` or to test a build. |
 
-The dev host invokes the installed `ceru` binary, not any in-repo Teal
-source. After rebuilding the daemon in the upstream Cerulean repo, reload
-the dev host (`Cmd/Ctrl+R`) to discard the old daemon process.
+## Changelogs
 
-## Settings
+- [This plugin](https://github.com/efredriksson/vscode-cerulean/releases)
+- [Cerulean formatter (upstream)](https://github.com/efredriksson/cerulean/releases)
 
-| Key                | Default | Purpose                                                                       |
-| ------------------ | ------- | ----------------------------------------------------------------------------- |
-| `cerulean.cliPath` | `"ceru"` | Path to the `ceru` binary. Override when not on `PATH` or to test a build. |
 
-## Troubleshooting
-
-- **"`ceru` not found on PATH"**: install via `luarocks install cerulean`
-  or set `cerulean.cliPath` to an absolute path.
-- **Silent no-op**: open `View → Output`, select `Cerulean` from the
-  dropdown. Spawn / exit / stderr show there.
-- **Parse error toast**: file has a Teal syntax error. `tl check <file>`
-  confirms.
